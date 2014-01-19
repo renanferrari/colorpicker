@@ -1,0 +1,20 @@
+apply plugin: 'android'
+
+android {
+    compileSdkVersion 17
+    buildToolsVersion "17"
+
+    defaultConfig {
+        minSdkVersion 8
+        targetSdkVersion 17
+
+        versionCode 1
+        versionName '1.0'
+    }
+
+}
+
+dependencies {
+    compile project(":colorpicker")
+    compile 'com.android.support:support-v4:18.0.0'
+}
