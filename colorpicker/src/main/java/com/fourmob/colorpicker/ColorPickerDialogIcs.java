@@ -33,6 +33,11 @@ public class ColorPickerDialogIcs extends DialogFragment implements ColorPickerS
         setColors(colors, selectedColor);
     }
 
+    public void initialize(String title, int[] colors, int selectedColor, int columns, int size) {
+        setArguments(title, columns, size);
+        setColors(colors, selectedColor);
+    }
+
     public void onColorSelected(int selectedColor) {
         if (this.mListener != null)
             this.mListener.onColorSelected(selectedColor);
@@ -78,6 +83,16 @@ public class ColorPickerDialogIcs extends DialogFragment implements ColorPickerS
     public void setArguments(int titleId, int columns, int size) {
         Bundle bundle = new Bundle();
         bundle.putInt("title_id", titleId);
+        setArguments(bundle, columns, size);
+    }
+
+    public void setArguments(String title, int columns, int size) {
+        Bundle bundle = new Bundle();
+        bundle.putString("title_name", title);
+        setArguments(bundle, columns, size);
+    }
+
+    private void setArguments(Bundle bundle, int columns, int size) {
         bundle.putInt("columns", columns);
         bundle.putInt("size", size);
         setArguments(bundle);

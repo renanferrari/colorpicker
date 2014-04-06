@@ -24,12 +24,17 @@ public class ColorPickerDialog extends DialogFragment implements ColorPickerSwat
 			this.mPalette.drawPalette(this.mColors, this.mSelectedColor);
 	}
 
-	public void initialize(int titleId, int[] colors, int selectedColor, int columns, int size) {
-		setArguments(titleId, columns, size);
-		setColors(colors, selectedColor);
-	}
+    public void initialize(int titleId, int[] colors, int selectedColor, int columns, int size) {
+        setArguments(titleId, columns, size);
+        setColors(colors, selectedColor);
+    }
 
-	public void onColorSelected(int selectedColor) {
+    public void initialize(String title, int[] colors, int selectedColor, int columns, int size) {
+        setArguments(title, columns, size);
+        setColors(colors, selectedColor);
+    }
+
+    public void onColorSelected(int selectedColor) {
 		if (this.mListener != null)
 			this.mListener.onColorSelected(selectedColor);
 		if ((getTargetFragment() instanceof ColorPickerSwatch.OnColorSelectedListener))
@@ -71,15 +76,25 @@ public class ColorPickerDialog extends DialogFragment implements ColorPickerSwat
 		bundle.putSerializable("selected_color", Integer.valueOf(this.mSelectedColor));
 	}
 
-	public void setArguments(int titleId, int columns, int size) {
-		Bundle bundle = new Bundle();
-		bundle.putInt("title_id", titleId);
-		bundle.putInt("columns", columns);
-		bundle.putInt("size", size);
-		setArguments(bundle);
-	}
+    public void setArguments(int titleId, int columns, int size) {
+        Bundle bundle = new Bundle();
+        bundle.putInt("title_id", titleId);
+        setArguments(bundle, columns, size);
+    }
 
-	public void setColors(int[] colors, int selected) {
+    public void setArguments(String title, int columns, int size) {
+        Bundle bundle = new Bundle();
+        bundle.putString("title_name", title);
+        setArguments(bundle, columns, size);
+    }
+
+    private void setArguments(Bundle bundle, int columns, int size) {
+        bundle.putInt("columns", columns);
+        bundle.putInt("size", size);
+        setArguments(bundle);
+    }
+
+    public void setColors(int[] colors, int selected) {
 		if ((this.mColors != colors) || (this.mSelectedColor != selected)) {
 			this.mColors = colors;
 			this.mSelectedColor = selected;
