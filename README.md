@@ -19,10 +19,15 @@ dependencies {
 }
 ```
 
+
 Information
 -----------
 
 ref: https://github.com/flavienlaurent/colorpicker
+
+
+*Note:* Add `ColorPickerDialogIcs` as purge `support-v4` from `ColorPickerDialog`. 
+
 
 License
 -----------
