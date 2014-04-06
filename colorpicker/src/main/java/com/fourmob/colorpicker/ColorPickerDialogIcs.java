@@ -21,7 +21,7 @@ public class ColorPickerDialogIcs extends DialogFragment implements ColorPickerS
     private ProgressBar mProgress;
     protected int mSelectedColor;
     protected int mSize;
-    protected int mTitleResId = R.string.color_picker_default_title;
+    protected String mTitle;
 
     private void refreshPalette() {
         if ((this.mPalette != null) && (this.mColors != null))
@@ -53,9 +53,16 @@ public class ColorPickerDialogIcs extends DialogFragment implements ColorPickerS
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
         if (getArguments() != null) {
-            this.mTitleResId = getArguments().getInt("title_id");
+            if (getArguments().containsKey("title")) {
+                this.mTitle = getArguments().getString("title");
+            } else if (getArguments().containsKey("title_id")) {
+                this.mTitle = getString(getArguments().getInt("title_id"));
+            } else {
+                this.mTitle = getString(R.string.color_picker_default_title);
+            }
             this.mColumns = getArguments().getInt("columns");
             this.mSize = getArguments().getInt("size");
+
         }
         if (bundle != null) {
             this.mColors = bundle.getIntArray("colors");
@@ -70,7 +77,7 @@ public class ColorPickerDialogIcs extends DialogFragment implements ColorPickerS
         this.mPalette.init(this.mSize, this.mColumns, this);
         if (this.mColors != null)
             showPaletteView();
-        this.mAlertDialog = new AlertDialog.Builder(getActivity()).setTitle(this.mTitleResId).setView(view).create();
+        this.mAlertDialog = new AlertDialog.Builder(getActivity()).setTitle(this.mTitle).setView(view).create();
         return this.mAlertDialog;
     }
 
