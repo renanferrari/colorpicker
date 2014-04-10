@@ -15,7 +15,7 @@ repositories {
 }
 
 dependencies {
-    compile 'com.fourmob.colorpicker:colorpicker:1.0.0'
+    compile 'com.fourmob.colorpicker:colorpicker:1.0.0-3'
 }
 ```
 
@@ -26,7 +26,11 @@ Information
 ref: https://github.com/flavienlaurent/colorpicker
 
 
-*Note:* Add `ColorPickerDialogIcs` as purge `support-v4` from `ColorPickerDialog`. 
+Add Feature
+-----------
+
+- Add `ColorPickerDialogIcs` as purge `support-v4` from `ColorPickerDialog`. ( same interface
+- Add `ColorPickerDialog#initialize` with `String` title as first arguments.
 
 
 License
