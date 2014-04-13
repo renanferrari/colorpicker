@@ -11,7 +11,7 @@ Usage
 
 ``` Groovy
 repositories {
-    maven { url 'https://raw.github.com/ichigotake/ColorPicker/migrate-to-gradle/repository' }
+    maven { url 'https://raw.github.com/ichigotake/colorpicker/migrate-to-gradle/repository' }
 }
 
 dependencies {
